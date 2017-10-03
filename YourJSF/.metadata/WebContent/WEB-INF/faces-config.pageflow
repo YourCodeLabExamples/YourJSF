@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15069893456080" configfile="/YourJSF/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="index" x="338" y="370" id="pf15069928244272" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15069928244273 pf15069928244274" inlinks="pf15069928244276 pf15069928244278" path="index.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="showCustomer" x="122" y="178" id="pf15069928244275" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf15069928244276" inlinks="pf15069928244273" path="showCustomer.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="newCustomer" x="122" y="562" id="pf15069928244277" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf15069928244278" inlinks="pf15069928244274" path="newCustomer.jsp"/>
+  <nodes xsi:type="pageflow:PFPage" name="deleteCustomer" x="558" y="173" id="pf15069928244271" path="/deleteCustomer.jsp"/>
+  <links id="pf15069928244273" target="pf15069928244275" source="pf15069928244272" outcome="showCustomer" redirect="true"/>
+  <links id="pf15069928244274" target="pf15069928244277" source="pf15069928244272" outcome="newCustomer" redirect="true"/>
+  <links id="pf15069928244276" target="pf15069928244272" source="pf15069928244275" outcome="index" redirect="true"/>
+  <links id="pf15069928244278" target="pf15069928244272" source="pf15069928244277" outcome="index" redirect="true"/>
+</pageflow:Pageflow>
