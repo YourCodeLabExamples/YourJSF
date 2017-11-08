@@ -6,7 +6,9 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import com.yourcodelab.model.Category;
 import com.yourcodelab.model.Customer;
+import com.yourcodelab.service.CategoryService;
 import com.yourcodelab.service.CustomerService;
 
 @ManagedBean(name = "customerManagedBean")
@@ -16,30 +18,49 @@ public class CustomerManagedBean implements Serializable{
 	
 	private Customer customer;
 	private List<Customer> listCustomer;
+	private List<Category> listCategory;
 	
-	private CustomerService service;
+	private CustomerService customerService;
+	private CategoryService categoryService;
 	
 	public CustomerManagedBean(){
-		service = new CustomerService();
-		customer = new Customer(0, "", "");
-		listCustomer = service.listAll();
+		customerService = new CustomerService();
+		categoryService = new CategoryService();
+		customer = new Customer(0, "", "", new Category(0, "Select One"));
+		listCustomer = customerService.listAll();
+		listCategory = categoryService.listAll();
 	}
 
 	public void searchByNameAction(){
 		System.out.println("Searching...");
-		this.listCustomer = service.findCustomerByName(customer.getName());
+		this.listCustomer = customerService.findCustomerByName(customer.getName());
 	}
 	
 	public String insertCustomerAction(){
-		System.out.println("Saving...");
-		service.insertCustomer(customer);
+		System.out.println("Inserting...");
+		//service.insertCustomer(customer);
+		
+		customer = new Customer(0, "", "", new Category(0, "Select One"));
 		
 		return "index";
 	}
 	
 	public String updateCustomerAction(){
 		System.out.println("Updating...");
-		//service.updateCustomer(customer);
+		customerService.updateCustomer(customer);
+		
+		customer = new Customer(0, "", "", new Category(0, "Select One"));
+		
+		return "index";
+	}
+	
+	public String deleteCustomerAction(){
+		System.out.println("Deleting...");
+		customerService.deleteCustomer(customer);
+		
+		listCustomer = customerService.listAll();
+		
+		customer = new Customer(0, "", "", new Category(0, "Select One"));
 		
 		return "index";
 	}
@@ -58,6 +79,14 @@ public class CustomerManagedBean implements Serializable{
 
 	public void setListCustomer(List<Customer> listCustomer) {
 		this.listCustomer = listCustomer;
+	}
+
+	public List<Category> getListCategory() {
+		return listCategory;
+	}
+
+	public void setListCategory(List<Category> listCategory) {
+		this.listCategory = listCategory;
 	}
 	
 }

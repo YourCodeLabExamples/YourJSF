@@ -7,37 +7,37 @@
     version="2.0">
 
 	<navigation-rule>
-		<from-view-id>index.jsp</from-view-id>
+		<from-view-id>index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>showCustomer</from-outcome>
-			<to-view-id>showCustomer.jsp</to-view-id>
+			<to-view-id>showCustomer.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
-		<from-view-id>index.jsp</from-view-id>
+		<from-view-id>index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>newCustomer</from-outcome>
-			<to-view-id>newCustomer.jsp</to-view-id>
+			<to-view-id>newCustomer.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
-		<from-view-id>showCustomer.jsp</from-view-id>
+		<from-view-id>showCustomer.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>index</from-outcome>
-			<to-view-id>index.jsp</to-view-id>
+			<to-view-id>index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
-		<from-view-id>newCustomer.jsp</from-view-id>
+		<from-view-id>newCustomer.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>index</from-outcome>
-			<to-view-id>index.jsp</to-view-id>
+			<to-view-id>index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
