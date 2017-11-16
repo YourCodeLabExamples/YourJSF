@@ -1,14 +1,17 @@
 package com.yourcodelab.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import com.yourcodelab.model.Category;
+import com.yourcodelab.model.City;
 import com.yourcodelab.model.Customer;
 import com.yourcodelab.service.CategoryService;
+import com.yourcodelab.service.CityService;
 import com.yourcodelab.service.CustomerService;
 
 @ManagedBean(name = "customerManagedBean")
@@ -19,16 +22,21 @@ public class CustomerManagedBean implements Serializable{
 	private Customer customer;
 	private List<Customer> listCustomer;
 	private List<Category> listCategory;
+	private List<City> listCity;
 	
 	private CustomerService customerService;
 	private CategoryService categoryService;
+	private CityService cityService;
 	
 	public CustomerManagedBean(){
 		customerService = new CustomerService();
 		categoryService = new CategoryService();
-		customer = new Customer(0, "", "", new Category(0, "Select One"));
+		cityService = new CityService();
+		
+		customer = new Customer(0, "", "", new Category(0, "Select One"), new City(7535, "Curitiba", "PR"));
 		listCustomer = customerService.listAll();
 		listCategory = categoryService.listAll();
+		listCity = new ArrayList<City>();
 	}
 
 	public void searchByNameAction(){
@@ -40,7 +48,7 @@ public class CustomerManagedBean implements Serializable{
 		System.out.println("Inserting...");
 		//service.insertCustomer(customer);
 		
-		customer = new Customer(0, "", "", new Category(0, "Select One"));
+		customer = new Customer(0, "", "", new Category(0, "Select One"), new City(7535, "Curitiba", "PR"));
 		
 		return "index";
 	}
@@ -49,7 +57,7 @@ public class CustomerManagedBean implements Serializable{
 		System.out.println("Updating...");
 		customerService.updateCustomer(customer);
 		
-		customer = new Customer(0, "", "", new Category(0, "Select One"));
+		customer = new Customer(0, "", "", new Category(0, "Select One"), new City(7535, "Curitiba", "PR"));
 		
 		return "index";
 	}
@@ -60,9 +68,18 @@ public class CustomerManagedBean implements Serializable{
 		
 		listCustomer = customerService.listAll();
 		
-		customer = new Customer(0, "", "", new Category(0, "Select One"));
+		customer = new Customer(0, "", "", new Category(0, "Select One"), new City(7535, "Curitiba", "PR"));
 		
 		return "index";
+	}
+	
+	public void changeStateAction() {
+		System.out.println("Changing State...");
+		if(customer.getCity().getState() != null 
+				&& customer.getCity().getState().length() == 2)
+			this.listCity = cityService.listCityByState(customer.getCity().getState());
+		else
+			this.listCity = new ArrayList<City>();
 	}
 	
 	public Customer getCustomer() {
@@ -87,6 +104,14 @@ public class CustomerManagedBean implements Serializable{
 
 	public void setListCategory(List<Category> listCategory) {
 		this.listCategory = listCategory;
+	}
+
+	public List<City> getListCity() {
+		return listCity;
+	}
+
+	public void setListCity(List<City> listCity) {
+		this.listCity = listCity;
 	}
 	
 }
