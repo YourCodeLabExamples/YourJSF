@@ -46,10 +46,32 @@
 					<h:inputText styleClass="form-control" value="#{customerManagedBean.customer.email}"/>
 				</div>
 				<div class="form-group">
-					<h:outputLabel value="Category"/>
+					<h:outputLabel value="Category:"/>
 					<h:selectOneMenu styleClass="form-control" value="#{customerManagedBean.customer.category.idCategory}">
 						<f:selectItem itemValue="0" itemLabel="Select One"/>
 						<f:selectItems value="#{customerManagedBean.listCategory}" var="cat" itemValue="#{cat.idCategory}" itemLabel="#{cat.description}"/>
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="State:"/>
+					<h:selectOneMenu styleClass="form-control" value="#{customerManagedBean.customer.city.state}">
+						<p:ajax listener="#{customerManagedBean.changeStateAction}" 
+								update="cities"/>
+						<f:selectItem itemValue="" itemLabel="Select One"/>
+						<f:selectItem itemValue="PR" itemLabel="Parana"/>
+						<f:selectItem itemValue="SC" itemLabel="Santa Catarina"/>
+						<f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul"/>
+						<f:selectItem itemValue="AM" itemLabel="Amazonas"/>
+					</h:selectOneMenu>
+				</div>
+				<div class="form-group">
+					<h:outputLabel value="City:"/>
+					<h:selectOneMenu id="cities" styleClass="form-control" value="#{customerManagedBean.customer.city.state}">
+						<f:selectItem itemValue="" itemLabel="Select One"/>
+						<f:selectItems value="#{customerManagedBean.listCity}"
+										var="city"
+										itemLabel="#{city.name}"
+										itemValue="#{city.idCity}"/>
 					</h:selectOneMenu>
 				</div>
 				<div id="actions" class="row">
