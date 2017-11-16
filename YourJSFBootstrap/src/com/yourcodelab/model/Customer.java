@@ -5,12 +5,14 @@ public class Customer {
 	private String name;
 	private String email;
 	private Category category;
+	private City city;
 	
-	public Customer(Integer id, String name, String email, Category category){
+	public Customer(Integer id, String name, String email, Category category, City city){
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.category = category;
+		this.city = city;
 	}
 	
 	public Integer getId() {
@@ -36,5 +38,13 @@ public class Customer {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 }
